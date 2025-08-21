@@ -6,5 +6,6 @@ router.post('/login', userController.login);
 router.put('/', userController.updateUser);
 router.post('/pedido', userController.createOrder);
 router.get('/pedido/:id', userController.getOrderStatus);
+router.post('/register', userController.registerUser);
 
 module.exports = router; 
