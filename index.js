@@ -1,5 +1,5 @@
 // index.js
-// Archivo principal del backend de Casa de Empanadas
+// Archivo principal del backend de Pizzas y Empanadas
 // Configura el servidor, middlewares, rutas y lógica de registro de usuario
 
 const express = require('express');

@@ -1,4 +1,4 @@
--- Estructura de base de datos para Casa de Empanadas
+-- Estructura de base de datos para Pizzas y Empanadas
 
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
