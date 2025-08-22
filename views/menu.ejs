@@ -130,6 +130,9 @@
             <button class="btn btn-outline-primary filter-btn active" data-filter="todos">
               <i class="fas fa-utensils me-1"></i>Todos
             </button>
+            <button class="btn btn-outline-success filter-btn" data-filter="promos">
+              <i class="fas fa-tags me-1"></i>Promos
+            </button>
             <button class="btn btn-outline-warning filter-btn" data-filter="empanadas">
               <i class="fas fa-bread-slice me-1"></i>Empanadas
             </button>
@@ -154,7 +157,7 @@
                       <h5 class="card-title"><%= item.nombre %></h5>
                       <p class="card-description"><%= item.descripcion %></p>
                     </div>
-                    <div class="card-price">$<%= item.precio %></div>
+                    <div class="card-price">$<%= (item.precio / 100).toFixed(2) %></div>
                   </div>
                 </div>
               </div>
@@ -168,7 +171,7 @@
               <div class="card-content">
                 <div>
                   <h5 class="card-title">Docena de Empanadas</h5>
-                  <p class="card-description">12 empanadas surtidas de tu elección. Perfectas para compartir en familia o con amigos.</p>
+                  <p class="card-description">12 empanadas surtidas de tu elección.</p>
                 </div>
                 <div class="card-price">$24.00</div>
               </div>
@@ -181,9 +184,23 @@
               <div class="card-content">
                 <div>
                   <h5 class="card-title">Media Docena de Empanadas</h5>
-                  <p class="card-description">6 empanadas surtidas de tu elección. Ideal para una comida rápida y deliciosa.</p>
+                  <p class="card-description">6 empanadas surtidas de tu elección.</p>
                 </div>
                 <div class="card-price">$13.50</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Nueva tarjeta de Promos -->
+          <div class="col-md-6 col-lg-4 d-flex justify-content-center menu-item" data-category="promos">
+            <div class="card menu-card" style="width: 280px;">
+              <img src="/empanada+bebida2.png" class="menu-img" alt="Combo 3 Empanadas + Bebida">
+              <div class="card-content">
+                <div>
+                  <h5 class="card-title">Combo 3 Empanadas + Bebida</h5>
+                  <p class="card-description">3 empanadas más bebida de 500ml.</p>
+                </div>
+                <div class="card-price">$18.00</div>
               </div>
             </div>
           </div>

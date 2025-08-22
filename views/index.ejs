@@ -8,100 +8,7 @@
   <link href="/styles.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Pacifico&display=swap" rel="stylesheet">
   
-  <style>
-                                                                               .carousel-image-container {
-          position: relative;
-          display: inline-block;
-          cursor: pointer;
-          line-height: 0;
-          margin: 0;
-          padding: 0;
-        }
-        
-        .carousel-image {
-          transition: all 0.3s ease;
-          display: block;
-          margin: 0;
-          padding: 0;
-        }
-        
-        .hover-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.8);
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0;
-          transition: all 0.3s ease;
-          border-radius: 8px;
-          backdrop-filter: blur(5px);
-          margin: 0;
-          padding: 0;
-        }
-    
-    .carousel-image-container:hover .hover-overlay {
-      opacity: 1;
-    }
-    
-         .carousel-image-container:hover .carousel-image {
-       transform: scale(1.05);
-     }
-     
-     .carousel-image-container:hover .hover-overlay {
-       transform: scale(1.05);
-     }
-    
-    .promo-content {
-      text-align: center;
-      padding: 20px;
-      max-width: 90%;
-    }
-    
-    .promo-content h5 {
-      color: #ff9800;
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    }
-    
-    .promo-content p {
-      color: #f0f0f0;
-      margin-bottom: 15px;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-    }
-    
-    .promo-badge {
-      background: linear-gradient(45deg, #ff9800, #ff5722);
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    
-                                       .carousel-item {
-         overflow: hidden;
-         border-radius: 8px;
-       }
-  </style>
+
 </head>
 <body>
   <nav class="navbar navbar-expand-lg mb-4">
@@ -131,11 +38,11 @@
        <!-- Carrusel de Empanadas -->
        <div class="col-md-6 d-flex flex-column align-items-center">
          <h3 class="text-center mb-3">Promos Empanadas</h3>
-         <div id="carruselEmpanadas" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000" style="max-width: 500px;">
+                   <div id="carruselEmpanadas" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3000" style="max-width: 399px;">
            <div class="carousel-inner">
              <div class="carousel-item active">
-               <div class="carousel-image-container">
-                                  <img src="/empanada1.jpg" class="d-block mx-auto carousel-image" style="height: 300px; width: auto; object-fit: contain;" alt="Empanada 1">
+                               <div class="carousel-image-container empanada1">
+                                     <img src="/empanada2.jpg" class="d-block mx-auto carousel-image" alt="Empanada 2">
                  <div class="hover-overlay">
                    <div class="promo-content">
                      <h5>¡Promo Especial!</h5>
@@ -146,8 +53,8 @@
                </div>
              </div>
              <div class="carousel-item">
-               <div class="carousel-image-container">
-                                  <img src="/empanada2.jpg" class="d-block mx-auto carousel-image" style="height: 300px; width: auto; object-fit: contain;" alt="Empanada 2">
+                               <div class="carousel-image-container empanada2">
+                  <img src="/empanada+bebida2.png" class="d-block mx-auto carousel-image" alt="Empanada + Bebida">
                  <div class="hover-overlay">
                    <div class="promo-content">
                      <h5>Combo Familiar</h5>
@@ -158,8 +65,8 @@
                </div>
              </div>
              <div class="carousel-item">
-               <div class="carousel-image-container">
-                                  <img src="/empanada3.jpg" class="d-block mx-auto carousel-image" style="height: 300px; width: auto; object-fit: contain;" alt="Empanada 3">
+                               <div class="carousel-image-container empanada3">
+                  <img src="/empanada3.jpg" class="d-block mx-auto carousel-image" alt="Empanada 3">
                  <div class="hover-overlay">
                    <div class="promo-content">
                      <h5>Empanadas Gourmet</h5>
@@ -181,11 +88,11 @@
        <!-- Carrusel de Pizzas -->
        <div class="col-md-6 d-flex flex-column align-items-center">
          <h3 class="text-center mb-3">Promos Pizzas</h3>
-         <div id="carruselPizzas" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3500" style="max-width: 500px;">
+                   <div id="carruselPizzas" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="3500" style="max-width: 399px;">
            <div class="carousel-inner">
              <div class="carousel-item active">
-               <div class="carousel-image-container">
-                                  <img src="/pizza.jpg" class="d-block mx-auto carousel-image" style="height: 300px; width: auto; object-fit: contain;" alt="Pizza">
+                               <div class="carousel-image-container pizza">
+                  <img src="/pizza.jpg" class="d-block mx-auto carousel-image" alt="Pizza">
                  <div class="hover-overlay">
                    <div class="promo-content">
                      <h5>Pizza del Día</h5>
