@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "empanada-carne",
+    "nombre": "Empanada de Carne",
+    "descripcion": "Clásica empanada argentina de carne.",
+    "precio": 500,
+    "categoria": "empanadas",
+    "imagen": "/empanada1.jpg"
+  },
+  {
+    "slug": "empanada-pollo",
+    "nombre": "Empanada de Pollo",
+    "descripcion": "Empanada rellena de pollo y especias.",
+    "precio": 500,
+    "categoria": "empanadas",
+    "imagen": "/empanada2.jpg"
+  },
+  {
+    "slug": "pizza-muzarella",
+    "nombre": "Pizza Muzarella",
+    "descripcion": "Pizza tradicional de muzzarella.",
+    "precio": 1200,
+    "categoria": "pizzas",
+    "imagen": "/pizza.jpg"
+  },
+  {
+    "slug": "docena",
+    "nombre": "Docena de Empanadas",
+    "descripcion": "12 empanadas surtidas de tu elección.",
+    "precio": 2400,
+    "categoria": "empanadas",
+    "imagen": "/empanada1.jpg"
+  },
+  {
+    "slug": "media-docena",
+    "nombre": "Media Docena de Empanadas",
+    "descripcion": "6 empanadas surtidas de tu elección.",
+    "precio": 1350,
+    "categoria": "empanadas",
+    "imagen": "/empanada2.jpg"
+  },
+  {
+    "slug": "combo-3-empanadas-bebida",
+    "nombre": "Combo 3 Empanadas + Bebida",
+    "descripcion": "3 empanadas más bebida de 500ml.",
+    "precio": 1800,
+    "categoria": "promos",
+    "imagen": "/empanada+bebida2.png"
+  }
+]

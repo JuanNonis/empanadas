@@ -3,22 +3,25 @@
 // Función para actualizar cantidad desde el menú
 function updateQuantityFromMenu(index, change) {
   const cart = CartManager.getCart();
-  const itemName = getItemNameByIndex(index);
-  
+  // Buscar el nombre desde el DOM (botón o controles) para evitar map hardcodeado
+  const addBtn = document.querySelector(`.add-to-cart-btn[data-index="${index}"]`);
+  const anyQtyBtn = document.querySelector(`.quantity-controls#quantity-${index} .quantity-btn`);
+  const itemName = (anyQtyBtn && anyQtyBtn.getAttribute('data-name')) || (addBtn && addBtn.getAttribute('data-name')) || null;
+
   if (itemName) {
     const item = cart.find(item => item.name === itemName);
     if (item) {
       item.quantity = (item.quantity || 0) + change;
-      
+
       if (item.quantity <= 0) {
         // Remover del carrito
         const itemIndex = cart.findIndex(cartItem => cartItem.name === itemName);
         cart.splice(itemIndex, 1);
-        
+
         // Mostrar botón de agregar
-        const addButton = document.querySelector(`[data-index="${index}"]`);
+        const addButton = document.querySelector(`.add-to-cart-btn[data-index="${index}"]`);
         const quantityControls = document.getElementById(`quantity-${index}`);
-        
+
         if (addButton && quantityControls) {
           addButton.style.display = 'flex';
           quantityControls.style.display = 'none';
@@ -27,24 +30,10 @@ function updateQuantityFromMenu(index, change) {
         // Actualizar display de cantidad
         updateQuantityDisplay(index, item.quantity);
       }
-      
+
       CartManager.saveCart(cart);
     }
   }
-}
-
-// Función para obtener el nombre del item por índice
-function getItemNameByIndex(index) {
-  const menuItems = [
-    'Empanada de Carne',
-    'Empanada de Pollo', 
-    'Pizza Muzarella',
-    'Docena de Empanadas',
-    'Media Docena de Empanadas',
-    'Combo 3 Empanadas + Bebida'
-  ];
-  
-  return menuItems[index] || null;
 }
 
 // Función para actualizar el display de cantidad

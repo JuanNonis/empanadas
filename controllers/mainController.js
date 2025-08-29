@@ -9,16 +9,16 @@ exports.home = (req, res) => {
   res.render('index', { carrusel, infoRandom });
 };
 
+// Cargar menú desde JSON
+const menuItems = require('../db/menu.json');
+
+
+
 exports.menu = (req, res) => {
-  // Menú de ejemplo
-  const menu = [
-    { nombre: 'Empanada de Carne', precio: 500, descripcion: 'Clásica empanada argentina de carne.' },
-    { nombre: 'Empanada de Pollo', precio: 500, descripcion: 'Empanada rellena de pollo y especias.' },
-    { nombre: 'Pizza Muzarella', precio: 1200, descripcion: 'Pizza tradicional de muzzarella.' }
-  ];
-  res.render('menu', { menu });
+  res.render('menu', { menu: menuItems });
 };
 
 exports.carrito = (req, res) => {
   res.render('carrito');
 }; 
+

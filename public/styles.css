@@ -732,6 +732,7 @@ h1, .navbar-brand {
 
 /* Imagen con altura fija cómoda y recorte correcto */
 .menu-img {
+  width: 100%;
   height: 200px !important;
   object-fit: cover;
   border-bottom: 1px solid #eee;
@@ -760,3 +761,7 @@ h1, .navbar-brand {
 
 /* Mantiene el precio en una línea */
 .card-price { white-space: nowrap; }
+
+/* Visibilidad de items filtrados */
+.menu-item.hidden { display: none !important; }
+.menu-item.visible { display: flex !important; }
