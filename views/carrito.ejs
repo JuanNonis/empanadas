@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito - Pizzas y Empanadas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      /* Usar el mismo fondo que las otras páginas */
+      background-image: url('/fondo.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+    }
+    
+    .cart-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .cart-header {
+      background: linear-gradient(45deg, #28a745, #20c997);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .cart-item {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .cart-item:hover {
+      background: #f8f9fa;
+    }
+    
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    
+    .item-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .item-details h5 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.25rem;
+    }
+    
+    .item-details p {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    .item-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #28a745;
+    }
+    
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f8f9fa;
+      padding: 0.5rem;
+      border-radius: 25px;
+      border: 1px solid #e9ecef;
+    }
+    
+    .quantity-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .quantity-btn:hover {
+      background: #0056b3;
+      transform: scale(1.1);
+    }
+    
+    .quantity-display {
+      font-size: 1rem;
+      font-weight: bold;
+      min-width: 30px;
+      text-align: center;
+      color: #333;
+    }
+    
+    .remove-btn {
+      background: none;
+      border: none;
+      color: #dc3545;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+    
+    .remove-btn:hover {
+      background: #dc3545;
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .cart-summary {
+      background: #f8f9fa;
+      padding: 2rem;
+      border-top: 1px solid #e9ecef;
+    }
+    
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0.5rem 0;
+    }
+    
+    .summary-row.total {
+      border-top: 2px solid #dee2e6;
+      padding-top: 1rem;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    
+    .checkout-btn {
+      background: linear-gradient(45deg, #28a745, #20c997);
+      border: none;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    .checkout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+    }
+    
+    .checkout-btn:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #6c757d;
+    }
+    
+    .empty-cart i {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      color: #dee2e6;
+    }
+    
+    .empty-cart h3 {
+      margin-bottom: 1rem;
+      color: #495057;
+    }
+    
+    .empty-cart p {
+      margin-bottom: 2rem;
+      color: #6c757d;
+    }
+    
+    .continue-shopping {
+      background: linear-gradient(45deg, #007bff, #0056b3);
+      border: none;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .continue-shopping:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+      color: white;
+      text-decoration: none;
+    }
+    
+    .item-total {
+      font-weight: bold;
+      color: #28a745;
+      font-size: 1.1rem;
+    }
+    
+    .cart-badge {
+      background: #dc3545;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg mb-4">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <img src="/logo.png" alt="Logo" style="width:40px; height:auto;">
+        Pizzas y Empanadas
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="/menu">Menú</a></li>
+          <li class="nav-item">
+            <a class="nav-link position-relative" href="/carrito" id="cart-link">
+              <i class="fas fa-shopping-cart"></i> Carrito
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-badge" style="display: none;">
+                0
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="cart-container">
+          <!-- Header del carrito -->
+          <div class="cart-header">
+            <h1 class="mb-0">
+              <i class="fas fa-shopping-bag me-3"></i>Tu Carrito
+            </h1>
+            <p class="mb-0 mt-2 opacity-75">Gestiona tus productos seleccionados</p>
+          </div>
+          
+          <!-- Lista de productos -->
+          <div id="cart-items">
+            <!-- Los items se cargarán dinámicamente aquí -->
+          </div>
+          
+          <!-- Estado vacío -->
+          <div id="empty-cart" class="empty-cart" style="display: none;">
+            <i class="fas fa-shopping-bag"></i>
+            <h3>Tu carrito está vacío</h3>
+            <p>¡Agrega algunos productos deliciosos de nuestro menú!</p>
+            <a href="/menu" class="continue-shopping">
+              <i class="fas fa-utensils me-2"></i>Ver Menú
+            </a>
+          </div>
+          
+          <!-- Resumen del carrito -->
+          <div id="cart-summary" class="cart-summary" style="display: none;">
+            <div class="summary-row">
+              <span>Subtotal:</span>
+              <span id="subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Envío:</span>
+              <span id="shipping">$0.00</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total:</span>
+              <span id="total">$0.00</span>
+            </div>
+            
+            <button class="checkout-btn" id="checkout-btn" disabled>
+              <i class="fas fa-credit-card me-2"></i>Proceder al Pago
+            </button>
+            
+            <div class="text-center mt-3">
+              <a href="/menu" class="continue-shopping">
+                <i class="fas fa-plus me-2"></i>Seguir Comprando
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Función para obtener el carrito del localStorage
+    function getCart() {
+      const cart = localStorage.getItem('cart');
+      return cart ? JSON.parse(cart) : [];
+    }
+    
+    // Función para guardar el carrito en localStorage
+    function saveCart(cart) {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartBadge();
+    }
+    
+    // Función para actualizar el badge del carrito
+    function updateCartBadge() {
+      const cart = getCart();
+      const badge = document.getElementById('cart-badge');
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      
+      if (totalItems > 0) {
+        badge.textContent = totalItems;
+        badge.style.display = 'block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+    
+    // Función para renderizar los items del carrito
+    function renderCartItems() {
+      const cart = getCart();
+      const cartContainer = document.getElementById('cart-items');
+      const emptyCart = document.getElementById('empty-cart');
+      const cartSummary = document.getElementById('cart-summary');
+      
+      if (cart.length === 0) {
+        cartContainer.style.display = 'none';
+        emptyCart.style.display = 'block';
+        cartSummary.style.display = 'none';
+        return;
+      }
+      
+      cartContainer.style.display = 'block';
+      emptyCart.style.display = 'none';
+      cartSummary.style.display = 'block';
+      
+      let subtotal = 0;
+      let cartHTML = '';
+      
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        
+        cartHTML += `
+          <div class="cart-item">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <img src="${item.image}" alt="${item.name}" class="item-image">
+              </div>
+              <div class="col">
+                <div class="item-details">
+                  <h5>${item.name}</h5>
+                  <p>${item.description}</p>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="item-price">$${(item.price / 100).toFixed(2)}</div>
+              </div>
+              <div class="col-auto">
+                <div class="quantity-controls">
+                  <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span class="quantity-display">${item.quantity}</span>
+                  <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="item-total">$${(itemTotal / 100).toFixed(2)}</div>
+              </div>
+              <div class="col-auto">
+                <button class="remove-btn" onclick="removeItem(${index})" title="Eliminar producto">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartContainer.innerHTML = cartHTML;
+      updateSummary(subtotal, 0, subtotal);
+    }
+    
+    // Función para actualizar la cantidad de un item
+    function updateQuantity(index, change) {
+      const cart = getCart();
+      
+      if (cart[index]) {
+        cart[index].quantity += change;
+        
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+        
+        saveCart(cart);
+        renderCartItems();
+      }
+    }
+    
+    // Función para remover un item del carrito
+    function removeItem(index) {
+      const cart = getCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCartItems();
+    }
+    
+    // Función para actualizar el resumen
+    function updateSummary(subtotal, shipping, total) {
+      document.getElementById('subtotal').textContent = `$${(subtotal / 100).toFixed(2)}`;
+      document.getElementById('shipping').textContent = `$${(shipping / 100).toFixed(2)}`;
+      document.getElementById('total').textContent = `$${(total / 100).toFixed(2)}`;
+      
+      const checkoutBtn = document.getElementById('checkout-btn');
+      checkoutBtn.disabled = total === 0;
+    }
+    
+    // Función para proceder al checkout
+    function checkout() {
+      const cart = getCart();
+      if (cart.length === 0) {
+        alert('Tu carrito está vacío');
+        return;
+      }
+      
+      // Aquí puedes implementar la lógica de checkout
+      alert('Funcionalidad de checkout en desarrollo...');
+    }
+    
+    // Inicializar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartBadge();
+      renderCartItems();
+      
+      // Event listener para el botón de checkout
+      document.getElementById('checkout-btn').addEventListener('click', checkout);
+    });
+  </script>
+</body>
+</html>

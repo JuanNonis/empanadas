@@ -17,4 +17,8 @@ exports.menu = (req, res) => {
     { nombre: 'Pizza Muzarella', precio: 1200, descripcion: 'Pizza tradicional de muzzarella.' }
   ];
   res.render('menu', { menu });
+};
+
+exports.carrito = (req, res) => {
+  res.render('carrito');
 }; 

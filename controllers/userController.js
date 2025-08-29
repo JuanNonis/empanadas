@@ -2,6 +2,15 @@ const pool = require('../db');
 const bcrypt = require('bcrypt');
 
 /**
+ * GET /usuario/register
+ * Muestra el formulario de registro de usuario (frontend)
+ * Renderiza la vista register.ejs con posibles mensajes de error o éxito
+ */
+exports.showRegisterForm = (req, res) => {
+  res.render('register', { error: null, success: null });
+};
+
+/**
  * POST /usuario/register (API)
  * Registra un nuevo usuario desde una petición API (no formulario)
  * - Valida nombre, email y password
